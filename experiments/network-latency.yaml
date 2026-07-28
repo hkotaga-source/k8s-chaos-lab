@@ -1,0 +1,18 @@
+apiVersion: chaos-mesh.org/v1alpha1
+kind: NetworkChaos
+metadata:
+  name: network-latency-example
+  namespace: chaos-mesh
+spec:
+  action: delay
+  mode: one
+  duration: "1m"
+  selector:
+    namespaces:
+      - default
+    labelSelectors:
+      app: sample-app
+  delay:
+    latency: "100ms"
+    correlation: "50"
+    jitter: "20ms"
